@@ -1,0 +1,24 @@
+{
+    "name": "speixoto/yii2-amcharts",
+    "description": "AmCharts Widget for Yii 2",
+    "keywords": ["yii", "amcharts"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sérgio Peixoto",
+            "email": "matematico2002@hotmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/speixoto/yii2-amcharts/issues",
+        "source": "https://github.com/speixoto/yii2-amcharts"
+    },
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-0": { "speixoto\\amcharts\\": "" }
+    },
+    "target-dir": "speixoto/amcharts"
+}
