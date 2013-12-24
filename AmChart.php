@@ -14,6 +14,14 @@ class AmChart extends Widget
      */
     public $options = [];
     /**
+     * @var string the width of the chart
+     */
+    public $width = '640px';
+    /**
+     * @var string the height of the chart
+     */
+    public $height = '400px';
+    /**
      * @var array the AmChart configuration array
      * @see http://docs.amcharts.com/3/javascriptcharts
      */
@@ -31,7 +39,8 @@ class AmChart extends Widget
     public function run()
     {
         $this->makeChart();
-        $this->options['id'] = $this->chartDivId;
+        $this->options['id']    = $this->chartDivId;
+        $this->options['style'] = "width: {$this->width}; height: {$this->height};";
         echo Html::tag('div', '', $this->options);
     }
 
