@@ -1,5 +1,5 @@
 <?php
-namespace speixoto\amcharts;
+namespace yii2amcharts;
 
 use yii\web\AssetBundle;
 
@@ -8,7 +8,7 @@ use yii\web\AssetBundle;
  */
 class AmChartAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/speixoto/yii2-amcharts/speixoto/amcharts/assets';
+    public $sourcePath = '@yii2amcharts/assets';
     public $css = [];
     public $js = [
         'js/amcharts.js',

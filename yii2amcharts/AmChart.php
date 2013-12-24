@@ -1,6 +1,7 @@
 <?php
-namespace speixoto\amcharts;
+namespace yii2amcharts;
 use Yii;
+use yii\web\View;
 use yii\base\Widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
@@ -48,7 +49,7 @@ class AmChart extends Widget
     {
         $chartConfiguration = json_encode($this->chartConfiguration);
         $js = "AmCharts.makeChart('{$this->chartDivId}', {$chartConfiguration});";
-        $this->getView()->registerJs($js, \yii\web\View::POS_READY);
+        $this->getView()->registerJs($js, View::POS_READY);
     }
 
     protected function setChartDivId($value)

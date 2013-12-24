@@ -18,7 +18,9 @@
         "yiisoft/yii2": "*"
     },
     "autoload": {
-        "psr-0": { "speixoto\\amcharts\\": "" }
+        "psr-0": { "yii2amcharts\\": "/" }
     },
-    "target-dir": "speixoto/amcharts"
+    "extra": {
+        "bootstrap": "yii2amcharts\\Extension"
+    }
 }
