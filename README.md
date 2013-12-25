@@ -15,16 +15,13 @@ This package is registered at packagist.org, so to install it you just need to a
 },
 ```
 
-USAGE
+Usage
 =====
 
-Accordion (Collapse)
-====================
-
-Put the code below into your view file and enjoy it!
+Put in your view:
 
 ```php
-use yiimetroui\Accordion;
+use yii2amcharts\AmChart;
 
 $chartConfiguration = [
     'type'         => 'serial',
