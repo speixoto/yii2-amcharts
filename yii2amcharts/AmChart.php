@@ -53,15 +53,18 @@ class AmChart extends Widget
 
     public function init()
     {
-        parent::init();
-        $this->chartDivId = 'chartdiv-' . $this->id;
+        if (!isset($this->options['id'])) {
+            $this->options['id'] = 'chartdiv-' . $this->getId();
+        }
+        $this->chartDivId = $this->options['id'];
         AmChartAsset::register($this->getView());
+
+        parent::init();
     }
 
     public function run()
     {
         $this->makeChart();
-        $this->options['id']    = $this->chartDivId;
         $this->options['style'] = "width: {$this->width}; height: {$this->height};";
         echo Html::tag('div', '', $this->options);
     }
