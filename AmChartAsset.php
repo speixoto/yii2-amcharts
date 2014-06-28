@@ -34,7 +34,7 @@ use yii\web\AssetBundle;
  */
 class AmChartAsset extends AssetBundle
 {
-    public $sourcePath = '@yii/amcharts/assets';
+    public $sourcePath = '@speixoto/amcharts/assets';
     public $css = [];
     public $js = [
         'js/amcharts.js',
