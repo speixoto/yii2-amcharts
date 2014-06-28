@@ -18,9 +18,8 @@
         "yiisoft/yii2": "*"
     },
     "autoload": {
-        "psr-0": { "yii2amcharts\\": "/" }
+        "psr-4": {
+            "speixoto\\amcharts\\": ""
+        }
     },
-    "extra": {
-        "bootstrap": "yii2amcharts\\Extension"
-    }
 }

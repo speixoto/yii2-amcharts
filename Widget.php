@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The MIT License (MIT)
  * Copyright (c) 2013 Sérgio Peixoto
@@ -20,16 +21,24 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace yii2amcharts;
+
+namespace speixoto\amcharts;
+
 use Yii;
 use yii\web\View;
-use yii\base\Widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
+
 /**
+ * AmChart Widget For Yii2
+ *
  * @author Sérgio Peixoto <matematico2002@hotmail.com>
+ *
+ * @link https://github.com/speixoto/yii2-amcharts
+ * @link http://www.amcharts.com/
  */
-class AmChart extends Widget
+
+class Widget extends yii\base\Widget
 {
     /**
      * @var array the HTML attributes for the breadcrumb container tag.

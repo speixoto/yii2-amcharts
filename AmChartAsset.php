@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The MIT License (MIT)
  * Copyright (c) 2013 Sérgio Peixoto
@@ -20,20 +21,32 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace yii2amcharts;
 
-use Yii;
+namespace speixoto\amcharts;
+
+use yii\web\AssetBundle;
 
 /**
  * @author Sérgio Peixoto <matematico2002@hotmail.com>
+ *
+ * @link https://github.com/speixoto/yii2-amcharts
+ * @link http://www.amcharts.com/
  */
-class Extension extends \yii\base\Extension
+class AmChartAsset extends AssetBundle
 {
-    /**
-     * @inheritdoc
-     */
-    public static function init()
-    {
-        Yii::setAlias('@yii2amcharts', __DIR__);
-    }
+    public $sourcePath = '@yii/amcharts/assets';
+    public $css = [];
+    public $js = [
+        'js/amcharts.js',
+        'js/funnel.js',
+        'js/gauge.js',
+        'js/pie.js',
+        'js/radar.js',
+        'js/serial.js',
+        'js/xy.js',
+    ];
+    public $depends = [
+        'yii\web\JqueryAsset',
+        'yii\bootstrap\BootstrapAsset',
+    ];
 }
