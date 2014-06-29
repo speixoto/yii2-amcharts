@@ -25,6 +25,7 @@
 namespace speixoto\amcharts;
 
 use yii\web\AssetBundle;
+use Yii;
 
 /**
  * @author Sérgio Peixoto <matematico2002@hotmail.com>
@@ -34,6 +35,7 @@ use yii\web\AssetBundle;
  */
 class AmChartAsset extends AssetBundle
 {
+    public $language;
     public $sourcePath = '@speixoto/amcharts/assets';
     public $css = [];
     public $js = [
@@ -44,33 +46,6 @@ class AmChartAsset extends AssetBundle
         'js/radar.js',
         'js/serial.js',
         'js/xy.js',
-        'lang/az.js',
-        'lang/bg.js',
-        'lang/de.js',
-        'lang/es.js',
-        'lang/fi.js',
-        'lang/fo.js',
-        'lang/fr.js',
-        'lang/hr.js',
-        'lang/hu.js',
-        'lang/id.js',
-        'lang/is.js',
-        'lang/it.js',
-        'lang/lt.js',
-        'lang/lv.js',
-        'lang/mk.js',
-        'lang/mn.js',
-        'lang/mt.js',
-        'lang/nl.js',
-        'lang/pl.js',
-        'lang/pt.js',
-        'lang/ro.js',
-        'lang/ru.js',
-        'lang/rw.js',
-        'lang/sk.js',
-        'lang/so.js',
-        'lang/th.js',
-        'lang/tr.js',
         'exporting/amexport.js',
         'exporting/canvg.js',
         'exporting/filesaver.js',
@@ -82,4 +57,11 @@ class AmChartAsset extends AssetBundle
         'yii\web\JqueryAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
+    public function registerAssetFiles($view)
+    {
+        $language = $this->language ? $this->language : Yii::$app->language;
+        $this->js[] = 'lang/' . $language . '.js';
+        parent::registerAssetFiles($view);
+    }
 }

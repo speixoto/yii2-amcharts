@@ -41,17 +41,21 @@ use yii\helpers\Html;
 class Widget extends yii\base\Widget
 {
     /**
-     * @var array the HTML attributes for the breadcrumb container tag.
+     * @var array The HTML attributes for the breadcrumb container tag.
      */
     public $options = [];
     /**
-     * @var string the width of the chart
+     * @var string The width of the chart
      */
     public $width = '640px';
     /**
-     * @var string the height of the chart
+     * @var string The height of the chart
      */
     public $height = '400px';
+    /**
+     * @var string The language of the chart
+     */
+    public $language;
     /**
      * @var array the AmChart configuration array
      * @see http://docs.amcharts.com/3/javascriptcharts
@@ -60,16 +64,12 @@ class Widget extends yii\base\Widget
 
     protected $_chartDivId;
 
-    protected $_assetBundle;
-
     public function init()
     {
         if (!isset($this->options['id'])) {
             $this->options['id'] = 'chartdiv-' . $this->getId();
         }
         $this->chartDivId = $this->options['id'];
-        $this->_assetBundle = AmChartAsset::register($this->getView());
-
         parent::init();
     }
 
@@ -82,7 +82,16 @@ class Widget extends yii\base\Widget
 
     protected function makeChart()
     {
-        $this->chartConfiguration['pathToImages'] = $this->_assetBundle->baseUrl . '/images/';
+        if (!isset($this->chartConfiguration['language']))
+        {
+            $this->chartConfiguration['language'] = $this->language ? $this->language : Yii::$app->language;
+        }
+        $assetBundle = AmChartAsset::register($this->getView());
+        $assetBundle->language = $this->chartConfiguration['language'];
+        if (!isset($this->chartConfiguration['pathToImages']))
+        {
+            $this->chartConfiguration['pathToImages'] = $assetBundle->baseUrl . '/images/';
+        }
         $chartConfiguration = json_encode($this->chartConfiguration);
         $js = "AmCharts.makeChart('{$this->chartDivId}', {$chartConfiguration});";
         $this->getView()->registerJs($js, View::POS_READY);
