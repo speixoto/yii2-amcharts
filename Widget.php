@@ -60,13 +60,15 @@ class Widget extends yii\base\Widget
 
     protected $_chartDivId;
 
+    protected $_assetBundle;
+
     public function init()
     {
         if (!isset($this->options['id'])) {
             $this->options['id'] = 'chartdiv-' . $this->getId();
         }
         $this->chartDivId = $this->options['id'];
-        AmChartAsset::register($this->getView());
+        $this->_assetBundle = AmChartAsset::register($this->getView());
 
         parent::init();
     }
@@ -80,6 +82,7 @@ class Widget extends yii\base\Widget
 
     protected function makeChart()
     {
+        $this->chartConfiguration['pathToImages'] = $this->_assetBundle->baseUrl . '/images/';
         $chartConfiguration = json_encode($this->chartConfiguration);
         $js = "AmCharts.makeChart('{$this->chartDivId}', {$chartConfiguration});";
         $this->getView()->registerJs($js, View::POS_READY);
