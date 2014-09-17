@@ -41,7 +41,7 @@ use yii\helpers\Html;
 class Widget extends yii\base\Widget
 {
     /**
-     * @var array The HTML attributes for the breadcrumb container tag.
+     * @var array The HTML attributes for the div wrapper tag.
      */
     public $options = [];
     /**
@@ -62,14 +62,14 @@ class Widget extends yii\base\Widget
      */
     public $chartConfiguration = [];
 
-    protected $_chartDivId;
+    protected $_chartId;
 
     public function init()
     {
         if (!isset($this->options['id'])) {
-            $this->options['id'] = 'chartdiv-' . $this->getId();
+            $this->options['id'] = 'chart-' . $this->getId();
         }
-        $this->chartDivId = $this->options['id'];
+        $this->chartId = $this->options['id'];
         parent::init();
     }
 
@@ -93,17 +93,17 @@ class Widget extends yii\base\Widget
             $this->chartConfiguration['pathToImages'] = $assetBundle->baseUrl . '/images/';
         }
         $chartConfiguration = json_encode($this->chartConfiguration);
-        $js = "AmCharts.makeChart('{$this->chartDivId}', {$chartConfiguration});";
+        $js = $this->chartId . " = AmCharts.makeChart('{$this->chartId}', {$chartConfiguration});";
         $this->getView()->registerJs($js, View::POS_READY);
     }
 
-    protected function setChartDivId($value)
+    protected function setChartId($value)
     {
-        $this->_chartDivId = $value;
+        $this->_chartId = $value;
     }
 
-    protected function getChartDivId()
+    protected function getChartId()
     {
-        return $this->_chartDivId;
+        return $this->_chartId;
     }
 }
