@@ -67,7 +67,7 @@ class Widget extends yii\base\Widget
     public function init()
     {
         if (!isset($this->options['id'])) {
-            $this->options['id'] = 'chart-' . $this->getId();
+            $this->options['id'] = 'chart_' . $this->getId();
         }
         $this->chartId = $this->options['id'];
         parent::init();
