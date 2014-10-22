@@ -60,8 +60,10 @@ class AmChartAsset extends AssetBundle
 
     public function registerAssetFiles($view)
     {
-        $language = $this->language ? $this->language : Yii::$app->language;
-        $this->js[] = 'lang/' . $language . '.js';
+        $language = $this->language ? substr($this->language,0,2) : substr(Yii::$app->language,0,2);
+        if($language!='en'){
+            $this->js[] = 'lang/' . $language . '.js';
+        }
         parent::registerAssetFiles($view);
     }
 }
