@@ -38,7 +38,7 @@ use yii\helpers\Html;
  * @link http://www.amcharts.com/
  */
 
-class Widget extends yii\base\Widget
+class Widget extends \yii\base\Widget
 {
     /**
      * @var array The HTML attributes for the div wrapper tag.
