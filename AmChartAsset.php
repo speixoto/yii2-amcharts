@@ -36,6 +36,7 @@ use Yii;
 class AmChartAsset extends AssetBundle
 {
     public $language;
+    public $theme;
     public $sourcePath = '@speixoto/amcharts/assets';
     public $css = [];
     public $js = [
@@ -63,6 +64,10 @@ class AmChartAsset extends AssetBundle
         $language = $this->language ? substr($this->language,0,2) : substr(Yii::$app->language,0,2);
         if($language!='en'){
             $this->js[] = 'lang/' . $language . '.js';
+        }
+        if($this->theme)
+        {
+            $this->js[] = 'themes/' . $this->theme . '.js';
         }
         parent::registerAssetFiles($view);
     }
