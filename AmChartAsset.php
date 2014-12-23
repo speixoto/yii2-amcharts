@@ -40,13 +40,13 @@ class AmChartAsset extends AssetBundle
     public $sourcePath = '@bower/amcharts/dist/amcharts';
     public $css = [];
     public $js = [
-        'js/amcharts.js',
-        'js/funnel.js',
-        'js/gauge.js',
-        'js/pie.js',
-        'js/radar.js',
-        'js/serial.js',
-        'js/xy.js',
+        'amcharts.js',
+        'funnel.js',
+        'gauge.js',
+        'pie.js',
+        'radar.js',
+        'serial.js',
+        'xy.js',
         'exporting/amexport.js',
         'exporting/canvg.js',
         'exporting/filesaver.js',
