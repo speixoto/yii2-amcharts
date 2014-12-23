@@ -15,7 +15,8 @@
         "source": "https://github.com/speixoto/yii2-amcharts"
     },
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*",
+        "bower-asset/amcharts": "*"
     },
     "autoload": {
         "psr-4": {

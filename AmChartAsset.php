@@ -37,7 +37,7 @@ class AmChartAsset extends AssetBundle
 {
     public $language;
     public $theme;
-    public $sourcePath = '@speixoto/amcharts/assets';
+    public $sourcePath = '@bower/amcharts/dist/amcharts';
     public $css = [];
     public $js = [
         'js/amcharts.js',
