@@ -87,11 +87,15 @@ class Widget extends \yii\base\Widget
             $this->chartConfiguration['language'] = $this->language ? $this->language : Yii::$app->language;
         }
         $assetBundle = AmChartAsset::register($this->getView());
-        $assetBundle->language = $this->chartConfiguration['language'];
         if (isset($this->chartConfiguration['theme']))
         {
-            $assetBundle->theme = $this->chartConfiguration['theme'];
+            $assetBundle->addThemeJs($this->chartConfiguration['theme']);
         }
+        if (isset($this->chartConfiguration['amExport']))
+        {
+            $assetBundle->addExportJs();
+        }
+        $assetBundle->addLanguageJs($this->chartConfiguration['language']);
         if (!isset($this->chartConfiguration['pathToImages']))
         {
             $this->chartConfiguration['pathToImages'] = $assetBundle->baseUrl . '/images/';

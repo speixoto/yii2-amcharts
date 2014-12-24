@@ -36,7 +36,6 @@ use Yii;
 class AmChartAsset extends AssetBundle
 {
     public $language;
-    public $theme;
     public $sourcePath = '@bower/amcharts/dist/amcharts';
     public $css = [];
     public $js = [
@@ -47,12 +46,6 @@ class AmChartAsset extends AssetBundle
         'radar.js',
         'serial.js',
         'xy.js',
-        'exporting/amexport.js',
-        'exporting/canvg.js',
-        'exporting/filesaver.js',
-        'exporting/jspdf.js',
-        'exporting/jspdf.plugin.addimage.js',
-        'exporting/rgbcolor.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset',
@@ -61,14 +54,35 @@ class AmChartAsset extends AssetBundle
 
     public function registerAssetFiles($view)
     {
-        $language = $this->language ? substr($this->language,0,2) : substr(Yii::$app->language,0,2);
+        parent::registerAssetFiles($view);
+    }
+
+    public function addThemeJs($theme)
+    {
+        $this->js[] = 'themes/' . $theme . '.js';
+    }
+
+    public function addLanguageJs($language = null)
+    {
+        $language = $language ? substr($language,0,2) : substr(Yii::$app->language,0,2);
         if($language!='en'){
             $this->js[] = 'lang/' . $language . '.js';
         }
-        if($this->theme)
+    }
+
+    public function addExportJs()
+    {
+        $exportJsPaths = [
+            'exporting/amexport.js',
+            'exporting/canvg.js',
+            'exporting/filesaver.js',
+            'exporting/jspdf.js',
+            'exporting/jspdf.plugin.addimage.js',
+            'exporting/rgbcolor.js',
+        ];
+        foreach ($exportJsPaths as $path)
         {
-            $this->js[] = 'themes/' . $this->theme . '.js';
+            $this->js[] = $path;
         }
-        parent::registerAssetFiles($view);
     }
 }
