@@ -24,6 +24,7 @@
 
 namespace speixoto\amcharts;
 
+use yii\helpers\Url;
 use yii\web\AssetBundle;
 use Yii;
 
@@ -53,10 +54,16 @@ class AmChartAsset extends AssetBundle
     }
 
     /**
-     * @param string $type 'serial', 'xy', 'radar', 'pie', 'gauge', 'funnel'
+     * @param string $type serial, xy, radar, pie, gauge, funnel
      */
     public function addTypeJs($type){
-        $this->js[] = $type . '.js';
+        if($type=='stock'){
+            $path = Yii::$app->view->assetManager->publish('@bower/amcharts-stock/dist/amcharts/amstock.js');
+            $this->js[] = 'serial.js';
+            Yii::$app->view->registerJsFile($path[1],['depends' =>self::className() ]);
+        }else{
+            $this->js[] = $type . '.js';
+        }
     }
 
     public function addThemeJs($theme)
