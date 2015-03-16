@@ -40,12 +40,7 @@ class AmChartAsset extends AssetBundle
     public $css = [];
     public $js = [
         'amcharts.js',
-        'funnel.js',
-        'gauge.js',
-        'pie.js',
-        'radar.js',
-        'serial.js',
-        'xy.js',
+
     ];
     public $depends = [
         'yii\web\JqueryAsset',
@@ -55,6 +50,13 @@ class AmChartAsset extends AssetBundle
     public function registerAssetFiles($view)
     {
         parent::registerAssetFiles($view);
+    }
+
+    /**
+     * @param string $type 'serial', 'xy', 'radar', 'pie', 'gauge', 'funnel'
+     */
+    public function addTypeJs($type){
+        $this->js[] = $type . '.js';
     }
 
     public function addThemeJs($theme)

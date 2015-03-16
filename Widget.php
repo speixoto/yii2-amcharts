@@ -87,6 +87,9 @@ class Widget extends \yii\base\Widget
             $this->chartConfiguration['language'] = $this->language ? $this->language : Yii::$app->language;
         }
         $assetBundle = AmChartAsset::register($this->getView());
+        if(isset($this->chartConfiguration['type'])){
+            $assetBundle->addTypeJs($this->chartConfiguration['type']);
+        }
         if (isset($this->chartConfiguration['theme']))
         {
             $assetBundle->addThemeJs($this->chartConfiguration['theme']);
