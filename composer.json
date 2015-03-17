@@ -16,7 +16,8 @@
     },
     "require": {
         "yiisoft/yii2": "*",
-        "bower-asset/amcharts": "*"
+        "bower-asset/amcharts": "*",
+        "bower-asset/amcharts-stock": "*"
     },
     "autoload": {
         "psr-4": {
