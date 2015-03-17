@@ -24,7 +24,6 @@
 
 namespace speixoto\amcharts;
 
-use yii\helpers\Url;
 use yii\web\AssetBundle;
 use Yii;
 
