@@ -37,7 +37,6 @@ use yii\helpers\Html;
  * @link https://github.com/speixoto/yii2-amcharts
  * @link http://www.amcharts.com/
  */
-
 class Widget extends \yii\base\Widget
 {
     /**
@@ -82,25 +81,21 @@ class Widget extends \yii\base\Widget
 
     protected function makeChart()
     {
-        if (!isset($this->chartConfiguration['language']))
-        {
+        if (!isset($this->chartConfiguration['language'])) {
             $this->chartConfiguration['language'] = $this->language ? $this->language : Yii::$app->language;
         }
         $assetBundle = AmChartAsset::register($this->getView());
-        if(isset($this->chartConfiguration['type'])){
+        if (isset($this->chartConfiguration['type'])) {
             $assetBundle->addTypeJs($this->chartConfiguration['type']);
         }
-        if (isset($this->chartConfiguration['theme']))
-        {
+        if (isset($this->chartConfiguration['theme'])) {
             $assetBundle->addThemeJs($this->chartConfiguration['theme']);
         }
-        if (isset($this->chartConfiguration['amExport']))
-        {
+        if (isset($this->chartConfiguration['amExport'])) {
             $assetBundle->addExportJs();
         }
         $assetBundle->addLanguageJs($this->chartConfiguration['language']);
-        if (!isset($this->chartConfiguration['pathToImages']))
-        {
+        if (!isset($this->chartConfiguration['pathToImages'])) {
             $this->chartConfiguration['pathToImages'] = $assetBundle->baseUrl . '/images/';
         }
         $chartConfiguration = json_encode($this->chartConfiguration);

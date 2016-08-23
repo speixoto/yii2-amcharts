@@ -24,8 +24,8 @@
 
 namespace speixoto\amcharts;
 
-use yii\web\AssetBundle;
 use Yii;
+use yii\web\AssetBundle;
 
 /**
  * @author Sérgio Peixoto <matematico2002@hotmail.com>
@@ -55,12 +55,13 @@ class AmChartAsset extends AssetBundle
     /**
      * @param string $type serial, xy, radar, pie, gauge, funnel
      */
-    public function addTypeJs($type){
-        if($type=='stock'){
+    public function addTypeJs($type)
+    {
+        if ($type == 'stock') {
             $path = Yii::$app->view->assetManager->publish('@bower/amcharts-stock/dist/amcharts/amstock.js');
             $this->js[] = 'serial.js';
-            Yii::$app->view->registerJsFile($path[1],['depends' =>self::className() ]);
-        }else{
+            Yii::$app->view->registerJsFile($path[1], ['depends' => self::className()]);
+        } else {
             $this->js[] = $type . '.js';
         }
     }
@@ -72,8 +73,8 @@ class AmChartAsset extends AssetBundle
 
     public function addLanguageJs($language = null)
     {
-        $language = $language ? substr($language,0,2) : substr(Yii::$app->language,0,2);
-        if($language!='en'){
+        $language = $language ? substr($language, 0, 2) : substr(Yii::$app->language, 0, 2);
+        if ($language != 'en') {
             $this->js[] = 'lang/' . $language . '.js';
         }
     }
@@ -88,8 +89,7 @@ class AmChartAsset extends AssetBundle
             'exporting/jspdf.plugin.addimage.js',
             'exporting/rgbcolor.js',
         ];
-        foreach ($exportJsPaths as $path)
-        {
+        foreach ($exportJsPaths as $path) {
             $this->js[] = $path;
         }
     }
