@@ -17,7 +17,7 @@
     "require": {
         "yiisoft/yii2": "*",
         "bower-asset/amcharts": "*",
-        "bower-asset/amcharts-stock": "*"
+        "bower-asset/amcharts-stock": "dev-master"
     },
     "autoload": {
         "psr-4": {
