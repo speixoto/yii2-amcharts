@@ -26,6 +26,7 @@ namespace speixoto\amcharts;
 
 use Yii;
 use yii\web\View;
+use yii\base\Widget as Yii2Widget
 use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 
@@ -37,7 +38,7 @@ use yii\helpers\Html;
  * @link https://github.com/speixoto/yii2-amcharts
  * @link http://www.amcharts.com/
  */
-class Widget extends \yii\base\Widget
+class Widget extends Yii2Widget
 {
     /**
      * @var array The HTML attributes for the div wrapper tag.
