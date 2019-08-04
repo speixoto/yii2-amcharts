@@ -25,9 +25,9 @@
 namespace speixoto\amcharts;
 
 use Yii;
+use yii\helpers\Json;
+use yii\web\JsExpression;
 use yii\web\View;
-use yii\base\InvalidConfigException;
-use yii\helpers\Html;
 
 /**
  * AmChart Widget For Yii2
@@ -40,7 +40,7 @@ use yii\helpers\Html;
 class Widget extends \yii\base\Widget
 {
     /**
-     * @var array The HTML attributes for the div wrapper tag.
+     * @var string[][] The HTML attributes for the breadcrumb container tag.
      */
     public $options = [];
     /**
@@ -56,7 +56,7 @@ class Widget extends \yii\base\Widget
      */
     public $language;
     /**
-     * @var array the AmChart configuration array
+     * @var string[] the AmChart configuration array
      * @see http://docs.amcharts.com/3/javascriptcharts
      */
     public $chartConfiguration = [];
@@ -82,9 +82,10 @@ class Widget extends \yii\base\Widget
     protected function makeChart()
     {
         if (!isset($this->chartConfiguration['language'])) {
-            $this->chartConfiguration['language'] = $this->language ? $this->language : Yii::$app->language;
+            $this->chartConfiguration['language'] = $this->language ?: Yii::$app->language;
         }
-        $assetBundle = AmChartAsset::register($this->getView());
+        $view = $this->getView();
+        $assetBundle = AmChartAsset::register($view);
         if (isset($this->chartConfiguration['type'])) {
             $assetBundle->addTypeJs($this->chartConfiguration['type']);
         }
@@ -98,9 +99,12 @@ class Widget extends \yii\base\Widget
         if (!isset($this->chartConfiguration['pathToImages'])) {
             $this->chartConfiguration['pathToImages'] = $assetBundle->baseUrl . '/images/';
         }
-        $chartConfiguration = json_encode($this->chartConfiguration);
-        $js = $this->chartId . " = AmCharts.makeChart('{$this->chartId}', {$chartConfiguration});";
-        $this->getView()->registerJs($js, View::POS_READY);
+        $jsExpression = new JsExpression($this->chartConfiguration);
+        $chartConfiguration = Json::htmlEncode($jsExpression->expression);
+
+        $chartDivId = $this->getChartId();
+        $js = "AmCharts.makeChart('{$chartDivId}', {$chartConfiguration});";
+        $view->registerJs($js, View::POS_READY);
     }
 
     protected function setChartId($value)
