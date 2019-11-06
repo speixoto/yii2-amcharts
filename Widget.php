@@ -28,6 +28,7 @@ use Yii;
 use yii\helpers\Json;
 use yii\web\JsExpression;
 use yii\web\View;
+use yii\helpers\Html;
 
 /**
  * AmChart Widget For Yii2
